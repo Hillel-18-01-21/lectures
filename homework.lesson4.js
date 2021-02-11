@@ -2,6 +2,8 @@ alert('Hello');
 let workingFlag;
 let history = [];
 
+
+
 do {
     const result = doCalculation();
     if (result) {
