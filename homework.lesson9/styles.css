@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-conrainer {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.shape-container {
+    width: 80%;
+    height: 520px;
+    border: 1px solid grey;
+    margin: 10px;
+} 
+
+.shape {
+    position: relative;
+
+    background-color: black;
+}
+
+.shape.square {
+    height: 64px;
+    width: 64px;
+}
+
+.shape.rect {
+    height: 64px;
+    width: 96px;
+}
+
+.shape.circle {
+    height: 64px;
+    width: 64px;
+    border-radius: 100%;
+}
