@@ -64,6 +64,11 @@ containerEl.append(newElement);
 // put newElement into container in the begin
 containerEl.prepend(newElement);
 
+// alternative methods for insert content
+containerEl.insertAdjacentElement('where', newElement);
+containerEl.insertAdjacentHTML('where', '<some>HTML</some>');
+containerEl.insertAdjacentText('where', 'some text');
+
 // get all children elements of container, returns HTMLCollection
 const childrenCollection = containerEl.children;
 
