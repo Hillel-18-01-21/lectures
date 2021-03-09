@@ -104,39 +104,52 @@
 
 // console.log(result);
 
-const template = `Hello, {{name}}, are u {{age}} old?`;
+// const template = `Hello, {{name}}, are u {{age}} old?`;
 
-const a = {
-    name: 'Max',
-    age: 22
-};
+// const a = {
+//     name: 'Max',
+//     age: 22
+// };
 
-const b = {
-    name: 'Stefano'
-};
+// const b = {
+//     name: 'Stefano'
+// };
 
-function makeTextFromTemplate(tmp) {
-    return obj => {
-        let result = tmp;
-        Object.keys(obj).forEach(e => {                // 1. e = 'name', tmp = `Hello, {{name}}, are u {{age}} old?`
-            result = result.replace(`{{${e}}}`, obj[e]);  // result = `Hello, Max, are u {{age}} old?`
-            // 2. e = 'age', tmp = `Hello, {{name}}, are u {{age}} old?`
-            // result = `Hello, {{name}}, are u 22 old?`
-        });
+// function makeTextFromTemplate(tmp) {
+//     return obj => {
+//         let result = tmp;
+//         Object.keys(obj).forEach(e => {                // 1. e = 'name', tmp = `Hello, {{name}}, are u {{age}} old?`
+//             result = result.replace(`{{${e}}}`, obj[e]);  // result = `Hello, Max, are u {{age}} old?`
+//             // 2. e = 'age', tmp = `Hello, {{name}}, are u {{age}} old?`
+//             // result = `Hello, {{name}}, are u 22 old?`
+//         });
 
 
-        return result;
-    };
-};
+//         return result;
+//     };
+// };
 
-const makeTmp = makeTextFromTemplateR(template);
+// const makeTmp = makeTextFromTemplateR(template);
 
-console.log(makeTmp(a));
+// console.log(makeTmp(a));
 
-console.log(makeTmp(b));
+// console.log(makeTmp(b));
 
-function makeTextFromTemplateR(tmp) {
-    return obj => Object
-        .keys(obj)
-        .reduce((result, key) => result.replace(`{{${key}}}`, obj[key]), tmp);
-};
+// function makeTextFromTemplateR(tmp) {
+//     return obj => Object
+//         .keys(obj)
+//         .reduce((result, key) => result.replace(`{{${key}}}`, obj[key]), tmp);
+// };
+
+const inputEl = document.getElementById('inputEl');
+
+inputEl.addEventListener('focus', e => {
+    console.log('input on focus');
+});
+
+inputEl.addEventListener('blur', e => {
+    console.log('input on blur');
+    console.log('input value: ', e.target.value);
+})
+
+;
