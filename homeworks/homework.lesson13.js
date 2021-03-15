@@ -16,10 +16,26 @@ const students = [
     }
 ];
 
-function getAvgMark() { } // средняя оценка студента
+function getAvgMark() {
+    return this.marks[0];
+} // средняя оценка студента
 
-function getMaxMark() { } // максимальна оценка студента
+function getMaxMark() {
+    return this.marks[0];
+} // максимальна оценка студента
 
-function setAttend() {} // увличить счетчик посещений студента
+function setAttend() {
+    this.attends++;
+} // увличить счетчик посещений студента
 
-function getInfo() {} // возвращаем строку с именем студента, средней оценкой и колличеством посещений
+function getInfo(surname, age) {
+    console.log(this.name, surname, age);
+} // возвращаем строку с именем студента, средней оценкой и колличеством посещений
+
+students.forEach(e => {
+    const getInfoForE = getInfo.bind(e);
+    getInfoForE();
+
+    getInfo.apply(e, ['Doe', 42]);
+    getInfo.call(e, 'Doe', 42);
+});
