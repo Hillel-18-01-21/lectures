@@ -53,6 +53,7 @@ console.log(studentA);
 // 1. Наследование
 // 2. Инкапсуляция
 // 3. Полиморфизм
+// 4. Абстракция (не про JS)
 
 // Animal
 // name
@@ -73,6 +74,8 @@ console.log(studentA);
 // myDog = new Wolf(...)
 
 function Animal() {
+    this.name = '';
+    this.age = 0;
     this.hasWool = false;
 
     this.isPredator = true;
@@ -83,7 +86,7 @@ function Animal() {
 }
 
 function Cat(name, color, age) {
-    this.name = name;
+    // this.name = name;
     this.color = color;
     this.age = age;
     this.hasWool = true;
@@ -91,7 +94,21 @@ function Cat(name, color, age) {
         console.log('Meow!');
     };
 }
-Cat.prototype = new Animal();
+
+function Cow(name, color, age) {
+    // this.name = name;
+    this.color = color;
+    this.age = age;
+    this.hasWool = true;
+    this.isPredator = false;
+    this.makeSound = function () {
+        console.log('Meow!');
+    };
+}
+
+const animal = new Animal();
+
+Cat.prototype = animal;
 
 function Wolf(name, color, age) {
     this.name = name;
@@ -104,4 +121,8 @@ function Wolf(name, color, age) {
 }
 
 const myCat = new Cat('Tom', 'blue', 92);
+
+const myCow = new Cow('Jessie', 'white', 5);
+
+myCow.hasTail = false;
 
