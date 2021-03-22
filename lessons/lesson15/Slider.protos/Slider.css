@@ -1,0 +1,16 @@
+.slider--container {
+    height: 168px;
+    width: 100%;
+}
+
+.slide {
+    height: 168px;
+    width: 100%;
+    list-style: none;
+
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
