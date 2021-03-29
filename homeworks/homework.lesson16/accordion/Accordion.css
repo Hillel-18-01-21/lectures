@@ -1,0 +1,16 @@
+.accordion__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.accordion__item {}
+
+.accordion__item--title {}
+
+.accordion__item--content {
+    display: none;
+}
+
+.accordion__item--content.active {
+    display: block;
+}
