@@ -13,6 +13,8 @@
     <script src="./Login/LoginService.js"></script>
     <script src="./Login/LoginComponent.js"></script>
 
+    <script src="./Main/MainComponent.js"></script>
+
     <script src="./script.js" async></script>
 </head>
 
@@ -24,10 +26,11 @@
     <script id="login-template" type="text/template">
         <div class="pt-2">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-            <div class="alert alert-danger d-none" id="message">
-                {{message}}
-            </div>
+            
             <form class="form-signin" id="login-form">
+                <div class="alert alert-danger d-none" id="message">
+                    {{message}}
+                </div>
                 <div class="form-floating">
                     <input type="email" class="form-control" id="email-input" placeholder="Enter email">
                     <label for="floatingInput">Email address</label>
@@ -40,6 +43,12 @@
                     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                 </div>
             </form>
+        </div>
+    </script>
+
+    <script id="main-template" type="text/template">
+        <div class="alert alert-info" id="message">
+            Hello, User!
         </div>
     </script>
 </body>

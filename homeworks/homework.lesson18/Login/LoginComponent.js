@@ -4,18 +4,16 @@ class LoginComponent {
     _passwordInputEl = null;
     _messageEl = null;
 
-    _loginService = null;
-
-    constructor(template, containerEl) {
+    constructor(template, containerEl, onLoginCb) {
         this.template = template;
         this.containerEl = containerEl;
-
-        // this._loginService = new LoginService();
+        this.onLogin = onLoginCb;
     }
 
     init() {
         this.containerEl.innerHTML = this.template.replace('{{message}}', 'Incorrect credentials, please check one and try again!');
 
+        // TODO: change selector from ID to class
         this._formEl = this.containerEl.querySelector('#login-form');
         this._loginInputEl = this.containerEl.querySelector('#email-input');
         this._passwordInputEl = this.containerEl.querySelector('#password-input');
@@ -34,9 +32,10 @@ class LoginComponent {
         evt.preventDefault();
     }
 
+    // Callback Way
     checkUserCredentials(login, password, callback) {
         const xhr = new XMLHttpRequest();
-        
+
         xhr.open('POST', 'https://reqres.in/api/login');
         xhr.setRequestHeader('content-type', 'application/json');
 
@@ -50,7 +49,7 @@ class LoginComponent {
                 status: xhr.status,
                 success: false
             };
-    
+
             if (result.status >= 200 && result.status < 300) {
                 result['response'] = JSON.parse(xhr.responseText);
                 result.success = true;
@@ -58,22 +57,65 @@ class LoginComponent {
 
             callback(result);
         };
+    }
 
+    checkUserCredentialsP(login, password) {
+        return fetch('https://reqres.in/api/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                "email": login,
+                "password": password
+            }),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
     }
 
     onLoginSubmit = () => {
         this._messageEl.classList.add('d-none');
 
-        this.checkUserCredentials(
-            this._loginInputEl.value,
-            this._passwordInputEl.value,
-            authResult => {
-                if (authResult.success) {
-                } else {
-                    this._messageEl.classList.remove('d-none');
+        const result = this.checkUserCredentialsP(this._loginInputEl.value, this._passwordInputEl.value);
+
+        result.then(e => {
+            console.log('then', e);
+            if (e.ok) {
+                if (this.onLogin) {
+                    this.onLogin();
                 }
+            } else {
+                this._messageEl.classList.remove('d-none');
             }
-        );
+            return e.json();
+        })
+        .then(e => {
+            console.log(e);
+        })
+        .then(e => {
+            console.log(e);
+        });
+
+        result.catch(e => {
+            console.log('catch');
+            this._messageEl.classList.remove('d-none');
+        });
+
+        {
+            // this.checkUserCredentials(
+            //     this._loginInputEl.value,
+            //     this._passwordInputEl.value,
+            //     authResult => {
+            //         if (authResult.success) {
+            //             // TODO: add some action
+            //             if (this.onLogin) {
+            //                 this.onLogin();
+            //             }
+            //         } else {
+            //             this._messageEl.classList.remove('d-none');
+            //         }
+            //     }
+            // );
+        }
     }
 
 }
