@@ -10,10 +10,16 @@ const mainComponent = new MainComponent(
     contentEl
 );
 
-loginComponent.init();
+const userListComponent = new UserListComponent(
+    document.getElementById('user-list-template').innerText,
+    document.getElementById('user-item-template').innerText,
+    contentEl
+);
+
+userListComponent.init();
 
 function onSuccessLogin() {
     loginComponent.dispose();
 
-    mainComponent.init();
+    userListComponent.init();
 }
