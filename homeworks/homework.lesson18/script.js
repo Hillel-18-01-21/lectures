@@ -16,7 +16,7 @@ const userListComponent = new UserListComponent(
     contentEl
 );
 
-userListComponent.init();
+loginComponent.init();
 
 function onSuccessLogin() {
     loginComponent.dispose();
