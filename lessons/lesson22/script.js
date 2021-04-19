@@ -162,29 +162,83 @@
 // console.log(a.next());
 // console.log(a.next());
 
-const newObj = {
-    name: 'Test',
-    age: 42,
-    iterate: function *iterate() {
-        yield this.name;
-        yield this.age;
-    }
-};
+// const newObj = {
+//     name: 'Test',
+//     age: 42,
+//     iterate: function *iterate() {
+//         yield this.name;
+//         yield this.age;
+//     }
+// };
 
-let done = false;
-const objGen = newObj.iterate();
-do {
-    const { value, done: _done } = objGen.next();
-    console.log(value);
-    done = _done;
-} while(!done);
+// let done = false;
+// const objGen = newObj.iterate();
+// do {
+//     const { value, done: _done } = objGen.next();
+//     console.log(value);
+//     done = _done;
+// } while(!done);
 
-for(let e in newObj) {
-    console.log(e);
-}
+// for(let e in newObj) {
+//     console.log(e);
+// }
 
 // 12 - BigInt, Symbol
 
 // BigInt
 
+// console.log(Number.MAX_SAFE_INTEGER); // Math.pow(2, 53) - 1
+
+// const bigIntDemo = 10n;
+// const bigIntDemoV2 = BigInt(42);
+
+// console.log(bigIntDemo);
+// console.log(bigIntDemoV2);
+
+// console.log(11n / 3n);
+// console.log(42n + 8n);
+// console.log(2n * 3n);
+
 // Symbol
+
+// function bar() {
+//     const sumSymbol = Symbol('sum');
+//     const obj = {
+//         a: 12,
+//         b: 42,
+//         [sumSymbol]: function() {
+//             console.log(this.a + this.b);
+//         }
+//     };
+
+//     obj[sumSymbol]();
+
+//     return obj;
+// }
+
+// const forOfDemo = {
+//     name: 'Bob',
+//     surname: 'Johnson',
+//     age: 33,
+//     [Symbol.iterator]: function *() {
+//         yield this.name;
+//         yield this.surname;
+//         yield this.age;
+//     }
+// };
+
+// const forOfDemoArr = [1, 'test', 43, true];
+
+// for (let e of forOfDemoArr) {
+//     console.log(e);
+// }
+
+// 13 - template string
+
+// 14 - Proxy Objects
+
+// const obj = {
+//     name: 'Johnny',
+//     age: 33
+// };
+

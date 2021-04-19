@@ -88,14 +88,10 @@ class LoginComponent {
             }
             return e.json();
         })
-        .then(e => {
-            console.log(e);
+        .then(({ token }) => {
+            localStorage.setItem('authToken', token);
         })
-        .then(e => {
-            console.log(e);
-        });
-
-        result.catch(e => {
+        .catch(e => {
             console.log('catch');
             this._messageEl.classList.remove('d-none');
         });
