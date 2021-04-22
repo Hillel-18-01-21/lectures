@@ -1,0 +1,11 @@
+.return-number(@number) when (isnumber(@number)) {
+    content: @number;
+}
+
+.true {
+    .return-number(123);
+}
+
+.false {
+    .return-number("123");
+}
