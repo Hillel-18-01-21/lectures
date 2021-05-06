@@ -1,5 +1,6 @@
+// app.js
 let obj = {
-    name: 'Bob'
+    name: 'Bo'
 };
 
 const { name } = obj;
