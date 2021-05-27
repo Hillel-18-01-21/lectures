@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Sidebar extends Component {
   render() {
@@ -6,13 +7,13 @@ class Sidebar extends Component {
       <aside className="menu">
         <div className="nes-container is-rounded">
           <h3>
-            <a href=""># Home</a>
+            <Link to="/"># Home</Link>
           </h3>
           <h3>
-            <a href=""># Profile</a>
+            <Link to="/profile"># Profile</Link>
           </h3>
           <h3>
-            <a href=""># Log out</a>
+            <Link to="/login"># Log out</Link>
           </h3>
           <section className="menu-tweet-action">
             <button
@@ -25,7 +26,10 @@ class Sidebar extends Component {
             <dialog className="nes-dialog" id="dialog-default">
               <form method="dialog">
                 <label for="textarea_field">What's happening?</label>
-                <textarea id="textarea_field" className="nes-textarea"></textarea>
+                <textarea
+                  id="textarea_field"
+                  className="nes-textarea"
+                ></textarea>
                 <menu className="dialog-menu">
                   <button className="nes-btn">Cancel</button>
                   <button className="nes-btn is-primary">Tweet</button>
