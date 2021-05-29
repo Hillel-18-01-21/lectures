@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import {
   Home,
@@ -10,6 +10,9 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoggedIn: !!localStorage.getItem('auth-token')
+    };
   }
 
   componentDidMount() {
@@ -18,8 +21,9 @@ class App extends Component {
   }
 
   render() {
+    const { isLoggedIn } = this.state;
     return (
-      <Router>
+      <BrowserRouter>
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -29,12 +33,12 @@ class App extends Component {
             <Profile />
           </Route>
 
-          <Route path="/login">
-            <Login />
-          </Route>
+          <Route path="/login" render={props => {
+            return isLoggedIn ? <Redirect to="/" /> : <Login {...props}/>;
+          }} />
 
         </Switch>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

@@ -1,29 +1,26 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import { LoginForm } from "../components";
+import { signIn } from "../core/api";
 
-const Login = (props) => {
-  const onSubmit = (login, password) => {
-    console.log(login, password);
-    fetch("http://localhost:3000/api/auth/signin", {
-      method: "POST",
-      body: JSON.stringify({
-        login,
-        password,
-      }),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((e) => e.json())
+const Login = ({ history }) => {
+  const [error, setError] = useState("");
+  const onSubmit = useCallback((login, password) => {
+    setError("");
+    signIn(login, password)
       .then((e) => {
-        console.log(e);
+        const { token } = e;
+        localStorage.setItem("auth-token", token);
+        history.push("/");
+      })
+      .catch(() => {
+        setError("Incorrect credentials");
       });
-  };
+  }, []);
 
   return (
     <main className="container">
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} error={error} />
     </main>
   );
 };

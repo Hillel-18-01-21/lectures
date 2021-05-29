@@ -1,24 +1,24 @@
 import React, { useState, useCallback } from "react";
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, error }) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   const onLoginChange = useCallback((e) => {
     setLogin(e.target.value);
-  });
+  }, []);
 
   const onPasswordChange = useCallback((e) => {
     setPassword(e.target.value);
-  });
+  }, []);
 
   const onLoginClick = useCallback(() => {
-    console.log("LoginForm", login, password);
     onSubmit(login, password);
-  }, [login, password]);
+  }, [login, password, onSubmit]);
 
   return (
     <div>
+      {error ? <span class="nes-text is-error">{error}</span> : null}
       <div className="nes-field">
         <label for="login">Your login</label>
         <input
