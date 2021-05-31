@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import {
   Home,
@@ -10,9 +11,6 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoggedIn: !!localStorage.getItem('auth-token')
-    };
   }
 
   componentDidMount() {
@@ -21,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn } = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -43,4 +41,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLogout: () => {
+    dispatch({
+      type: 'authUpdate',
+      payload: false
+    });
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

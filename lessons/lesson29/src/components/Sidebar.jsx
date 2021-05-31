@@ -1,20 +1,37 @@
-import React, { Component } from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { createAuthUpdate, getUser } from '../core/store/actions';
 
-class Sidebar extends Component {
-  render() {
-    return (
-      <aside className="menu">
-        <div className="nes-container is-rounded">
-          <h3>
-            <Link to="/"># Home</Link>
-          </h3>
-          <h3>
-            <Link to="/profile"># Profile</Link>
-          </h3>
-          <h3>
-            <Link to="/login"># Log out</Link>
-          </h3>
+const Sidebar = () => {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const dispatch = useDispatch();
+
+  const onLogout = useCallback(() => {
+    // dispatch(createAuthUpdate(false));
+    dispatch(getUser());
+  }, []);
+
+  return (
+    <aside className="menu">
+      <div className="nes-container is-rounded">
+        <h3>
+          <Link to="/"># Home</Link>
+        </h3>
+        <h3>
+          <Link to="/profile"># Profile</Link>
+        </h3>
+        <h3>
+          {/* <Link to="/login"># Log out</Link> */}
+          <button
+            type="button"
+            className="nes-btn is-primary tweet-btn"
+            onClick={onLogout}
+          >
+            # Log out
+          </button>
+        </h3>
+        {isLoggedIn ? (
           <section className="menu-tweet-action">
             <button
               type="button"
@@ -37,10 +54,12 @@ class Sidebar extends Component {
               </form>
             </dialog>
           </section>
-        </div>
-      </aside>
-    );
-  }
-}
+        ) : (
+          <></>
+        )}
+      </div>
+    </aside>
+  );
+};
 
 export default Sidebar;
